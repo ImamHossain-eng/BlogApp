@@ -1,5 +1,5 @@
 @extends('layouts.home')
 @section('content')
-<h1>About Page</h1>
+Test2
 
 @endsection

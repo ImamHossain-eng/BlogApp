@@ -31,6 +31,7 @@ Route::group(['prefix'=>'pages', 'as'=>'user.'], function(){
 });
 
 
+
 //Route::get('/pages/{name}', [PagesController::class, 'filename'])->where('name', '[A-Za-z]+');
 // Route::get('/pages/{name}', [PagesController::class, 'filename']);
 
@@ -44,6 +45,12 @@ Route::group(['prefix'=>'pages', 'as'=>'user.'], function(){
 // })->where('name', '[A-Za-z]+');
 
 Route::get('/test', [PagesController::class, 'test']);
+
+
+Route::get('/inc', [PagesController::class, 'inc']);
+
+
+Route::view('/test2', 'pages.test2');
 
 
 

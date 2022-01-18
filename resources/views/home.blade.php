@@ -1,4 +1,5 @@
-<a href="{{route('user.contact')}}">Contact</a> 
-<a href="/pages/about">About</a>
-<a href="/pages/service">Service</a>
+@extends('layouts.home')
+@section('content')
 <h1>Home Page</h1>
+
+@endsection

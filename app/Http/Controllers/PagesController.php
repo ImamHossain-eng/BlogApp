@@ -22,8 +22,11 @@ class PagesController extends Controller
     //     return view('pages.'.$name);
     // }
     public function test(){
-        $test = 'kjjdrgkjhrgjh';
+        $test = '';
         $fruits = ['Mangos', 'Bananas', 'Jack-Fruits'];
         return view('pages.test', compact('test', 'fruits'));
+    }
+    public function inc(){
+        return view('inc');
     }
 }

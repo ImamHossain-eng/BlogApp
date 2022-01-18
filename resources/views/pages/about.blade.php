@@ -1,1 +1,6 @@
-<h1>ABout Page</h1>
+@extends('layouts.home')
+@section('content')
+<h1>About Page</h1>
+
+@endsection
+
