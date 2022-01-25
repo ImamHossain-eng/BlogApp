@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\BlogsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,10 @@ Route::get('/inc', [PagesController::class, 'inc']);
 
 Route::view('/test2', 'pages.test2');
 
+
+//Route::resource('/blogs', [BlogsController::class]);
+
+Route::get('/blogs', [BlogsController::class, 'index'])->name('blog.index');
 
 
 
