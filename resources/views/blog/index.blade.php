@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog Index</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
+@extends('layouts.blogs')
+@section('content')
 <body>
     <div class="container">
         <div class="card">
@@ -14,6 +7,7 @@
                 <h3>Blog Index</h3>
             </div>
             <div class="card-body">
+                <a href="/blog/create" class="btn btn-primary">Add New Blog</a>                
                 <table class="table table-striped table-hover table-light">
                     <thead>
                         <tr>
@@ -21,6 +15,7 @@
                             <th>BD ID</th>
                             <th>Title</th>
                             <th>Body</th>
+                            <th>Create at</th>
                             <th>Option</th>
                         </tr>
                     </thead>
@@ -31,7 +26,18 @@
                                 <td>{{$blog->id}}</td>
                                 <td> {{$blog->title}} </td>
                                 <td> {{$blog->body}} </td>
-                                <td>Option</td>
+                                <td> {{$blog->created_at->diffForHumans()}} </td>
+                                <td>
+                                    <a href="/blog/{{$blog->id}}" class="btn btn-info">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    
+                                    {{Form::open(['route' =>['blog.destroy', $blog->id], 'method'=>'DELETE', 'style'=>'display:inline;'])}}
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    {{Form::close()}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -41,4 +47,5 @@
     </div>
     
 </body>
-</html>
+
+@endsection

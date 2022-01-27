@@ -57,6 +57,11 @@ Route::view('/test2', 'pages.test2');
 //Route::resource('/blogs', [BlogsController::class]);
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blog.index');
+Route::get('/blog/create', [BlogsController::class, 'create'])->name('blog.create');
+Route::post('/blog', [BlogsController::class, 'store'])->name('blog.store');
+Route::get('/blog/{id}', [BlogsController::class, 'show'])->name('blog.show');
+Route::delete('/blog/{id}', [BlogsController::class, 'destroy'])->name('blog.destroy');
+
 
 
 

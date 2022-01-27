@@ -31,7 +31,7 @@ class BlogsController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -42,7 +42,33 @@ class BlogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:10|max:191',
+            'body' => 'required|max:191'
+        ]);
+
+        //option 1
+        Blog::create($request->all());
+
+        //option 2
+        // Blog::create([
+        //     'title' => $request->title,
+        //     'body' => $request->body,
+        // ]);
+
+        //option 3
+        // //Initiate a new Object
+        // $blog = new Blog;
+        // //Assign Value
+        // // $blog->title = $request->input('title');
+        // // $blog->body = $request->input('body');
+        
+        // $blog->title = $request->title;
+        // $blog->body = $request->body;
+        // //Save to DB
+        // $blog->save();
+        
+        return redirect()->route('blog.index')->with('success', 'Successfully Created');
     }
 
     /**
@@ -53,7 +79,8 @@ class BlogsController extends Controller
      */
     public function show($id)
     {
-        //
+        $blog = Blog::find($id);
+        return view('blog.show', compact('blog'));       
     }
 
     /**
@@ -87,6 +114,10 @@ class BlogsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blog = Blog::find($id);
+
+        $blog->delete();
+
+        return redirect()->route('blog.index')->with('error', 'Successfully Removed');
     }
 }
