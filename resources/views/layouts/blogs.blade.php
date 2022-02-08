@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container"><br>
         @include('inc.message')
         @yield('content')
     </div>

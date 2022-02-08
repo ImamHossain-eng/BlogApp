@@ -15,12 +15,13 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        // $blogs = Blog::latest()->get();
         // $blogs = Blog::orderBy('id', 'desc')->get();
         // $blogs = Blog::orderBy('id', 'asc')->take(1)->get();
         //$blog = Blog::where('id', 2)->get();
         //$blog = Blog::find(2); or $blog = Blog::where('id', 2)->first();
         //return $blogs;
+        $blogs = Blog::latest()->paginate(5);
         return view('blog.index', compact('blogs'));
     }
 
@@ -43,12 +44,21 @@ class BlogsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|min:10|max:191',
-            'body' => 'required|max:191'
+            // 'title' => 'required|min:10|max:191',
+            // 'body' => 'required|max:191'
+            'title' => ['required', 'min:10', 'max:190'],
+            'body' => ['required', 'max:190'],
+            'type' => 'required'
         ]);
 
+        if($request->input('type') != 'null'){
+            Blog::create($request->all());
+            return redirect()->route('blog.index')->with('success', 'Successfully Created');           
+        }else{
+            return back()->withInput()->with('error', 'Please select any type');
+        }
         //option 1
-        Blog::create($request->all());
+        
 
         //option 2
         // Blog::create([
@@ -68,7 +78,7 @@ class BlogsController extends Controller
         // //Save to DB
         // $blog->save();
         
-        return redirect()->route('blog.index')->with('success', 'Successfully Created');
+       
     }
 
     /**
@@ -91,7 +101,8 @@ class BlogsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blog::find($id);
+        return view('blog.edit', compact('blog'));
     }
 
     /**
@@ -103,7 +114,30 @@ class BlogsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:191',
+            'body' => 'required|max:191'
+        ]);
+
+        $blog = Blog::find($id);
+        // $oldType = $blog->type;
+        // $newType = $request->input('type');
+
+        // if($newType != 'null'){
+        //     $type = $newType;
+        // }else{
+        //     $type = $oldType;
+        // }
+
+
+
+
+        $blog->title = $request->input('title');
+        $blog->body = $request->input('body');
+        $blog->type = $request->input('type');
+        $blog->save();
+
+        return redirect()->route('blog.index')->with('warning', 'Successfully Updated');
     }
 
     /**

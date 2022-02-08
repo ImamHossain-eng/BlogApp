@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\BackupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,14 @@ Route::view('/test2', 'pages.test2');
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blog.index');
 Route::get('/blog/create', [BlogsController::class, 'create'])->name('blog.create');
 Route::post('/blog', [BlogsController::class, 'store'])->name('blog.store');
-Route::get('/blog/{id}', [BlogsController::class, 'show'])->name('blog.show');
+Route::get('/blog/{id}', [BlogsController::class, 'show'])->name('blog.show')->where('id', '[0-9]+');
 Route::delete('/blog/{id}', [BlogsController::class, 'destroy'])->name('blog.destroy');
+Route::get('/blog/{id}/edit', [BlogsController::class, 'edit'])->name('blog.edit');
+Route::put('/blog/{id}', [BlogsController::class, 'update'])->name('blog.update');
 
+//Trashed Blogs
+Route::get('/blog/trash/all', [BackupController::class, 'trash_all'])->name('blog.trash');
+Route::get('/blog/{id}/restore', [BackupController::class, 'blog_restore'])->name('blog.restore');
 
 
 
