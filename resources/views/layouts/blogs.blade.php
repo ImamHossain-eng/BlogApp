@@ -15,7 +15,17 @@
         @include('inc.message')
         @yield('content')
     </div>
-    
+
+   
+
+
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script> --}}
+    {{-- <script src="//cdn.ckeditor.com/4.17.2/basic/ckeditor.js"></script> --}}
+    {{-- <script src="//cdn.ckeditor.com/4.17.2/full/ckeditor.js"></script> --}}
+    <script>
+        CKEDITOR.replaceAll( function(textarea, config) {});
+    </script>
 
     
 </body>

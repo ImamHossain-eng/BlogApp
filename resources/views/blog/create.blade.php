@@ -8,7 +8,7 @@
                 <h3>Create New Blog</h3>
             </div>
             <div class="card-body">
-                {{Form::open(['route'=>'blog.store', 'method'=>'POST'])}}
+                {{Form::open(['route'=>'blog.store', 'method'=>'POST', 'enctype'=>'multipart/form-data'])}}
                 {{-- @csrf  --}}
                 {{-- {{method_field('PUT')}} --}}
                 {{-- @method('PUT') --}}
@@ -21,6 +21,11 @@
                     <div class="form-group">
                         {{-- <input type="text" name="body" value="{{old('body')}}" class="form-control" placeholder="Enter the Body"> --}}
                         <textarea name="body" class="form-control" placeholder="Enter the body of this Blog"></textarea>
+                        {{-- {{Form::textarea('body', '', ['placeholder' => 'Enter the body', 'id '=> 'abc', 'class' => 'form-control'])}} --}}
+                    </div><br>
+
+                    <div class="form-group">
+                        <input type="file" name="image" class="form-control">
                     </div><br>
 
                     <div class="form-group">
@@ -31,7 +36,7 @@
                         </select>
                     </div><br>
             
-                    <input type="submit" value="Save" class="btn btn-primary">
+                    <input type="submit" value="Save" class="btn btn-primary w-100">
                 {{Form::close()}}
                 <!--<form action="/blog" method="POST" enctype="multipart/form-data">
                     

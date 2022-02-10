@@ -8,7 +8,7 @@
                 <h3>Edit Blog with id {{$blog->id}}</h3>
             </div>
             <div class="card-body">
-                {{Form::open(['route'=> ['blog.update', $blog->id], 'method'=>'PUT'])}}
+                {{Form::open(['route'=> ['blog.update', $blog->id], 'method'=>'PUT', 'enctype'=>'multipart/form-data'])}}
                 {{-- @csrf  --}}
                 {{-- {{method_field('PUT')}} --}}
                 {{-- @method('PUT') --}}
@@ -19,7 +19,14 @@
                     </div><br>
             
                     <div class="form-group">
-                        <input type="text" name="body" value="{{$blog->body}}" class="form-control" placeholder="Enter the Body">
+                        {{-- <input type="text" name="body" value="{{$blog->body}}" class="form-control" placeholder="Enter the Body"> --}}
+                        <textarea name="body" class="form-control" placeholder="Enter the body of this Blog">
+                            {{$blog->body}}
+                        </textarea>
+                    </div><br>
+
+                    <div class="form-group">
+                        <input type="file" name="image" class="form-control">
                     </div><br>
 
                     <div class="form-group">

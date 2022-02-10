@@ -27,7 +27,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$blog->id}}</td>
                                 <td> {{$blog->title}} </td>
-                                <td> {{$blog->body}} </td>
+                                <td> {!! Str::limit($blog->body, 40, $end='....') !!} </td>
                                 <td> {{$blog->type}} </td>
                                 <td> {{$blog->created_at->diffForHumans()}} </td>
                                 <td>

@@ -13,7 +13,8 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'body',
-        'type'
+        'type',
+        'image'
     ];
     protected $dates = [
         'deleted_at', 
